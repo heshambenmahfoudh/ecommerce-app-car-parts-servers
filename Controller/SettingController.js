@@ -1,11 +1,11 @@
-import SettingMdel from '../Models/SettingMdel.js'
+import SettingModel from '../Models/SettingModel.js'
 import ApiErr from '../utils/apiErr.js'
 import { ERR, FAIL, SUCCESS } from '../utils/httpStatus.js'
 
 //  CREATE SETTING
 export const createSetting = async (req, res,next) => {
   
-  const newSetting = new SettingMdel(req.body)
+  const newSetting = new SettingModel(req.body)
   try {
     const savedSetting = await newSetting.save()
     res.status(200).json({ status: SUCCESS, data: savedSetting })
@@ -17,7 +17,7 @@ export const createSetting = async (req, res,next) => {
 // UPDATE SETTING
 export const updatedSettingById = async (req, res,next) => {
   try {
-    const updatedSetting = await SettingMdel.findByIdAndUpdate(
+    const updatedSetting = await SettingModel.findByIdAndUpdate(
       req.params.id,
       {
         $set: req.body,
@@ -33,7 +33,7 @@ export const updatedSettingById = async (req, res,next) => {
 // DELETE SETTING
 export const deletedSettingById = async (req, res,next) => {
   try {
-    await SettingMdel.findByIdAndDelete(req.params.id)
+    await SettingModel.findByIdAndDelete(req.params.id)
     res
       .status(200)
       .json({ status: SUCCESS, message: 'Setting has been Deleted' })
@@ -45,7 +45,7 @@ export const deletedSettingById = async (req, res,next) => {
 // GET ALL SETTING
 export const getAllSetting = async (req, res,next) => {
   try {
-    const setting = await SettingMdel.find()
+    const setting = await SettingModel.find()
     res.status(200).json({ status: SUCCESS, data: setting })
   } catch (err) {
      next(new ApiErr(ERR, 500, 'Failed to Fetching Setting'))

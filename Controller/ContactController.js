@@ -1,4 +1,4 @@
-import ContactModule from '../Models/ContactModule.js'
+import ContactModel from '../Models/ContactModel.js'
 import ApiErr from '../utils/apiErr.js'
 import { ERR, FAIL, SUCCESS } from '../utils/httpStatus.js'
 
@@ -6,7 +6,7 @@ import { ERR, FAIL, SUCCESS } from '../utils/httpStatus.js'
 export const createContact = async (req, res,next) => {
   
  
-  const newContact = new ContactModule(req.body)
+  const newContact = new ContactModel(req.body)
   try {
     const savedContact = await newContact.save()
     res.status(200).json({ status: SUCCESS, data: savedContact })
@@ -19,7 +19,7 @@ export const createContact = async (req, res,next) => {
 // DELETE CONTACT
 export const deleteContactById = async (req, res,next) => {
   try {
-    await ContactModule.findByIdAndDelete(req.params.id)
+    await ContactModel.findByIdAndDelete(req.params.id)
 
     res
       .status(200)
@@ -32,7 +32,7 @@ export const deleteContactById = async (req, res,next) => {
 //  GET CONTACT
 export const getContactById = async (req, res,next) => {
   try {
-    const getCon = await ContactModule.findById(req.params.id).populate(
+    const getCon = await ContactModel.findById(req.params.id).populate(
       'userId',
     )
     res.status(200).json({ status: SUCCESS, data: getCon })
@@ -45,11 +45,11 @@ export const getContactById = async (req, res,next) => {
 export const getAllContacts = async (req, res,next) => {
   try {
     const contacts = req.query.limit
-      ? await ContactModule.find()
+      ? await ContactModel.find()
           .sort({ _id: -1 })
           .limit(req.query.limit)
           .populate('userId')
-      : await ContactModule.find().sort({ _id: -1 }).populate('userId')
+      : await ContactModel.find().sort({ _id: -1 }).populate('userId')
     res.status(200).json({ status: SUCCESS, data: contacts })
   } catch (err) {
     

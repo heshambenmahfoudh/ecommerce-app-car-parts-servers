@@ -1,13 +1,13 @@
 import express from 'express'
+import { validateTokenAdmin } from '../utils/TokenValidation.js'
+import { createSettingValidator } from '../utils/validator/settingValidator.js'
 import {
   createSetting,
   deletedSettingById,
   getAllSetting,
   updatedSettingById,
-} from '../Controller/settingControler.js'
-import { validateTokenAdmin } from '../utils/TokenValidation.js'
-import { createSettingValidator } from '../utils/validator/settingValidator.js'
-
+} from '../Controller/SettingController.js'
+    
 const settingRouter = express.Router()
 // CREATE SETTING
 settingRouter.post(
