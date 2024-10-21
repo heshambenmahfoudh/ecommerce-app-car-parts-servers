@@ -56,7 +56,7 @@ export const getOrderById = async (req, res, next) => {
 
 // GET ORDER OF USER
 export const getOrdersOfUser = async (req, res, next) => {
-  const { id } = req.params
+  const { id, limit } = req.params
   try {
     const orders = await OrderModel.find({ userId: id })
       .limit(limit)
@@ -70,22 +70,18 @@ export const getOrdersOfUser = async (req, res, next) => {
 
 // GET ALL ORDERS
 export const getAllOrders = async (req, res, next) => {
-  const { limit, value } = req.query
+  const { limit} = req.query
+  console.log(limit);
   try {
-    const userName = await UserModel.find({
-      firstname: { $regex: value, $options: 'i' },
-      lastname: { $regex: value, $options: 'i' },
-    })
-    const userId = userName?.[0]?._id.toString()
-    const orders = value
-      ? await OrderModel.find({ userId })
-          .limit(limit)
-          .populate('userId')
-          .sort({ _id: -1 })
-      : await OrderModel.find()
-          .limit(limit)
-          .populate('userId')
-          .sort({ _id: -1 })
+    // const userName = await UserModel.find({
+    //   firstname: { $regex: value, $options: 'i' },
+    //   lastname: { $regex: value, $options: 'i' },
+    // })
+    // const userId = userName?.[0]?._id.toString()
+    const orders = await OrderModel.find()
+      .limit(limit)
+      .populate('userId')
+      .sort({ _id: -1 })
     res.status(200).json({ status: SUCCESS, data: orders })
   } catch (err) {
     next(new ApiErr(ERR, 500, 'Failed to Fetching Orders'))

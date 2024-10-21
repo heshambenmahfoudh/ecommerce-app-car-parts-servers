@@ -63,11 +63,9 @@ export const deleteUserById = async (req, res, next) => {
 
 // GET ALL USERS
 export const getAllUsers = async (req, res, next) => {
-  const { admins } = req.query
+  const { admin, limit } = req.query
   try {
-    const users = await UserModel.find({ isAdmin: admins }).limit(
-      req.query.limit,
-    )
+    const users = await UserModel.find({ isAdmin: admin}).limit(limit)
 
     res.status(200).json({ status: SUCCESS, data: users })
   } catch (err) {

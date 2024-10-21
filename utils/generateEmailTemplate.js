@@ -1,4 +1,4 @@
-const generateEmailTemplate = ({resetToken}) => {
+const generateEmailTemplate = ({ resetToken }) => {
   ;`
   
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -28,7 +28,8 @@ const generateEmailTemplate = ({resetToken}) => {
                         </tr>
                       </tbody>
                     </table>
-                    <table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="padding:25px 35px">
+                    <table align="center" width="100%" border="0" 
+                    cellPadding="0" cellSpacing="0" role="presentation" style="padding:25px 35px">
                       <tbody>
                         <tr>
                           <td>
@@ -36,14 +37,28 @@ const generateEmailTemplate = ({resetToken}) => {
                              BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Roboto&#x27;,
                               &#x27;Oxygen&#x27;, &#x27;Ubuntu&#x27;, &#x27;Cantarell&#x27;
                               , &#x27;Fira Sans&#x27;, &#x27;Droid Sans&#x27;
-                              , &#x27;Helvetica Neue&#x27;, sans-serif;font-size:20px;font-weight:bold;margin-bottom:15px">Verify your email address</h1>
-                            <p style="font-size:14px;line-height:24px;margin:24px 0;color:#333;font-family:-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Roboto&#x27;, &#x27;Oxygen&#x27;, &#x27;Ubuntu&#x27;, &#x27;Cantarell&#x27;, &#x27;Fira Sans&#x27;, &#x27;Droid Sans&#x27;, &#x27;Helvetica Neue&#x27;, sans-serif;margin-bottom:14px">Thanks for starting the new AWS account creation process. We want to make sure it&#x27;s really you. Please enter the following verification code when prompted. If you don&#x27;t want to create an account, you can ignore this message.</p>
-                            <table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="display:flex;align-items:center;justify-content:center">
+                              , &#x27;Helvetica Neue&#x27;, sans-serif;font-size:20px;
+                              font-weight:bold;margin-bottom:15px">Verify your email address</h1>
+                            <p style="font-size:14px;line-height:24px;margin:24px 0;color:#333;
+                            font-family:-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, 
+                            &#x27;Roboto&#x27;, &#x27;Oxygen&#x27;, &#x27;Ubuntu&#x27;, &#x27;
+                            Cantarell&#x27;, &#x27;Fira Sans&#x27;, &#x27;Droid Sans&#x27;,
+                             &#x27;Helvetica Neue&#x27;, sans-serif;margin-bottom:14px">Thanks
+                              for starting the new AWS account creation process. We want to make
+                               sure it&#x27;s really you. Please enter the following verification 
+                               code when prompted. If you don&#x27;t want to create an account,
+                                you can ignore this message.</p>
+                            <table align="center" width="100%" border="0" cellPadding="0" 
+                            cellSpacing="0" role="presentation" style="display:flex;align-items:center;justify-content:center">
                               <tbody>
                                 <tr>
                                   <td>
-                                    <p style="font-size:14px;line-height:24px;margin:0;color:#333;font-family:-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Roboto&#x27;, &#x27;Oxygen&#x27;, &#x27;Ubuntu&#x27;, &#x27;Cantarell&#x27;, &#x27;Fira Sans&#x27;, &#x27;Droid Sans&#x27;, &#x27;Helvetica Neue&#x27;, sans-serif;font-weight:bold;text-align:center">Verification code</p>
-                                    <p style="font-size:36px;line-height:24px;margin:10px 0;color:#333;font-family:-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Roboto&#x27;, &#x27;Oxygen&#x27;, &#x27;Ubuntu&#x27;, &#x27;Cantarell&#x27;, &#x27;Fira Sans&#x27;, &#x27;Droid Sans&#x27;, &#x27;Helvetica Neue&#x27;, sans-serif;font-weight:bold;text-align:center">596853</p>
+                                    <p style="font-size:14px;line-height:24px;margin:0;color:#333;
+                                    font-family:-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, 
+                                    &#x27;Roboto&#x27;, &#x27;Oxygen&#x27;, &#x27;Ubuntu&#x27;,
+                                     &#x27;Cantarell&#x27;, &#x27;Fira Sans&#x27;, &#x27;Droid Sans&#x27;
+                                     , &#x27;Helvetica Neue&#x27;, sans-serif;font-weight:bold;text-align:center">Verification code</p>
+                                    <p style="font-size:36px;line-height:24px;margin:10px 0;color:#333;font-family:-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Roboto&#x27;, &#x27;Oxygen&#x27;, &#x27;Ubuntu&#x27;, &#x27;Cantarell&#x27;, &#x27;Fira Sans&#x27;, &#x27;Droid Sans&#x27;, &#x27;Helvetica Neue&#x27;, sans-serif;font-weight:bold;text-align:center">${resetToken}</p>
                                     <p style="font-size:14px;line-height:24px;margin:0px;color:#333;font-family:-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Roboto&#x27;, &#x27;Oxygen&#x27;, &#x27;Ubuntu&#x27;, &#x27;Cantarell&#x27;, &#x27;Fira Sans&#x27;, &#x27;Droid Sans&#x27;, &#x27;Helvetica Neue&#x27;, sans-serif;text-align:center">(This code is valid for 10 minutes)</p>
                                   </td>
                                 </tr>

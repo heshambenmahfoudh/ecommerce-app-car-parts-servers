@@ -7,7 +7,7 @@ import generateToken from '../utils/generateToken.js'
 import { addMinutes } from 'date-fns'
 import generateEmailTemplate from '../utils/generateEmailTemplate.js'
 import { Resend } from 'resend'
- const resend = new Resend('re_iZP369v7_98Rh9RHovtyRTmff9S6ZtCZg')
+const resend = new Resend('re_iZP369v7_98Rh9RHovtyRTmff9S6ZtCZg')
 // REGISTER USER
 export const RegisterUser = async (req, res, next) => {
   const oldUser = await UserModel.findOne({
@@ -107,9 +107,7 @@ export const forgotPassword = async (req, res, next) => {
   try {
     const existingUser = await UserModel.findOne({ username })
     if (!existingUser) {
-      return next(
-        new ApiErr(FAIL, 403, ` User (${req.body.username}) Not Found `),
-      )
+      return next(new ApiErr(FAIL, 403, ` User (${username}) Not Found `))
     }
     const resetToken = generateToken().toString()
     const resetTokenExpiry = addMinutes(new Date(), 30)
@@ -117,26 +115,27 @@ export const forgotPassword = async (req, res, next) => {
       { username },
       { $set: { resetToken, resetTokenExpiry } },
     )
-   const htmlText = generateEmailTemplate(resetToken)
+    const htmlText = generateEmailTemplate(resetToken)
     const { data, error } = await resend.emails.send({
-      from: 'ecommerce <noreply@carparts.com>',
+      from: 'ecommerce-car-parts <noreply@carparts.com>',
       to: username,
-      subject: 'Password Reset Request', 
-      html: 'generateEmailTemplate(resetToken) ',
+      subject: 'Password Reset Request',
+      html: htmlText,
     })
     if (error) {
-      return next(new ApiErr(ERR, 500, error))
+      console.log(error)
+      return next(new ApiErr(FAIL, 403, 'Faild To Reset Password'))
     }
     const resultData = {
-        userId: existingUser.id,
-        emailId:data?.id
+      userId: existingUser.id,
+      emailId: data?.id,
     }
 
     return res.status(200).json({
       status: SUCCESS,
-      message: `Password reset email sent to (${existingUser.username}) 
+      message: `Password Reset Email Sent to (${existingUser.username}) 
        `,
-       data:resultData
+      data: resultData,
     })
   } catch (err) {
     console.log(err)

@@ -4,8 +4,8 @@ import {
   loginUser,
   RegisterUser,
 } from '../Controller/AuthController.js'
-import { forgotPasswordValidator } from '../utils/validator/forgotPasswordValidator.js'
 import { createLoginValidator } from '../utils/validator/loginValidator.js'
+import { forgotPasswordValidator } from '../utils/validator/forgotPasswordValidator.js'
 import { createUserValidator } from '../utils/validator/userValidator.js'
 
 const authRouter = express.Router()
@@ -17,10 +17,6 @@ authRouter.post('/auth/register', createUserValidator, RegisterUser)
 authRouter.post('/auth/login', createLoginValidator, loginUser)
 
 // FORGOT PASS
-authRouter.put(
-  '/auth/forgot-password',
-  forgotPasswordValidator,
-  forgotPassword,
-)
+authRouter.put('/auth/forgot-password', forgotPasswordValidator, forgotPassword)
 
 export default authRouter

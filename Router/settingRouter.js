@@ -7,7 +7,7 @@ import {
   getAllSetting,
   updatedSettingById,
 } from '../Controller/SettingController.js'
-    
+
 const settingRouter = express.Router()
 // CREATE SETTING
 settingRouter.post(
